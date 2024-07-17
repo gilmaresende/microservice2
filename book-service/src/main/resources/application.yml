@@ -19,9 +19,9 @@ spring:
     schemas: book_service
     user: root
     password: root
-  cloud:
-    config:
-      enabled: false
+#  cloud:
+#    config:
+#      enabled: true
 server:
   port: 8100
 

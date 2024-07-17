@@ -1,9 +1,6 @@
 package br.com.gir.book_service.response;
 
-import jakarta.persistence.*;
-
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Cambio implements Serializable {
@@ -14,13 +11,13 @@ public class Cambio implements Serializable {
 
     private String to;
 
-    private BigDecimal conversionFactor;
+    private Double conversionFactor;
 
-    private BigDecimal conversionValue;
+    private Double conversionValue;
 
     private String enviroment;
 
-    public Cambio(Long id, String from, String to, BigDecimal conversionFactor, BigDecimal conversionValue, String enviroment) {
+    public Cambio(Long id, String from, String to, Double conversionFactor, Double conversionValue, String enviroment) {
         this.id = id;
         this.from = from;
         this.to = to;
@@ -56,19 +53,19 @@ public class Cambio implements Serializable {
         this.to = to;
     }
 
-    public BigDecimal getConversionFactor() {
+    public Double getConversionFactor() {
         return conversionFactor;
     }
 
-    public void setConversionFactor(BigDecimal conversionFactor) {
+    public void setConversionFactor(Double conversionFactor) {
         this.conversionFactor = conversionFactor;
     }
 
-    public BigDecimal getConversionValue() {
+    public Double getConversionValue() {
         return conversionValue;
     }
 
-    public void setConversionValue(BigDecimal conversionValue) {
+    public void setConversionValue(Double conversionValue) {
         this.conversionValue = conversionValue;
     }
 

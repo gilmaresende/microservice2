@@ -1,6 +1,7 @@
 package br.com.gir.book_service.controller;
 
 import br.com.gir.book_service.modal.Book;
+import br.com.gir.book_service.propx.CambioProx;
 import br.com.gir.book_service.reppositories.BookRepository;
 import br.com.gir.book_service.response.Cambio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +16,17 @@ import java.util.HashMap;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("book-service")
-public class BookController {
+@RequestMapping("book-service-v2")
+public class BookControllerV2 {
 
     @Autowired
     private Environment environment;
 
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private CambioProx cambioProx;
 
     @GetMapping(value = "/{id}/{currency}")
     public Book findBook(@PathVariable("id") Long id, @PathVariable("currency") String currency) {
@@ -32,22 +36,14 @@ public class BookController {
         if (opBook.isEmpty()) throw new RuntimeException("Book not fond");
         Book book = opBook.get();
 
-        HashMap<String, String> params = new HashMap<>();
-        params.put("amount", book.getPrice().toString());
-        params.put("from", "USD");
-        params.put("to", currency);
-        var response = new RestTemplate().getForEntity("http://localhost:8000/cambio-service/{amount}/{from}/{to}",
-                Cambio.class,
-                params);
 
-        Cambio cambio = response.getBody();
+        Cambio cambio = cambioProx.getCambio(book.getPrice(), "USD", currency);
 
         book.setPrice(cambio.getConversionValue());
 
         String port = environment.getProperty("local.server.port");
 
-
-        book.setEnviroment(port);
+        book.setEnviroment(port + "-FEING");
 
         return book;
     }
