@@ -1,0 +1,37 @@
+server:
+  port: 8765
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: cambio-service
+          uri: lb://cambio-service
+          predicates:
+            - Path=/cambio-service/**
+        - id: book-service-v2
+          uri: lb://book-service
+          predicates:
+            - Path=/book-service-v2/**
+        - id: open-api
+          uri: lb://api-gateway
+          predicates:
+            - Path=/v3/api-docs/
+          filters:
+            - RewritePath=/v3/api-docs/(?<path>.*), /${path}/v3/api-docs
+#      discovery:
+#        locator:
+#          enabled: true
+#          lower-case-service-id: true
+    config:
+      enabled: false
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+

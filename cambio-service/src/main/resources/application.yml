@@ -23,3 +23,14 @@ spring:
   cloud:
     config:
       enabled: false
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+springdoc:
+  show-actuator: false
+  api-docs:
+    path: cambio-service/v3/api-docs
