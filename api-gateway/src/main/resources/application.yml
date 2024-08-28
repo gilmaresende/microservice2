@@ -12,16 +12,16 @@ spring:
           uri: lb://cambio-service
           predicates:
             - Path=/cambio-service/**
-        - id: book-service-v2
+        - id: book-service
           uri: lb://book-service
           predicates:
-            - Path=/book-service-v2/**
-        - id: open-api
+            - Path=/book-service/**
+        - id: openapi
           uri: lb://api-gateway
           predicates:
-            - Path=/v3/api-docs/
+            - Path=/v3/api-docs/**
           filters:
-            - RewritePath=/v3/api-docs/(?<path>.*), /${path}/v3/api-docs
+            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
 #      discovery:
 #        locator:
 #          enabled: true

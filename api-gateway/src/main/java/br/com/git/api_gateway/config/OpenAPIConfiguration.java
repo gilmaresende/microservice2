@@ -20,6 +20,7 @@ public class OpenAPIConfiguration {
                                      RouteDefinitionLocator locator) {
 
         List<RouteDefinition> definitions = locator.getRouteDefinitions().collectList().block();
+        assert definitions != null;
         definitions.stream().filter(routeDefinition -> routeDefinition.getId().matches(".*-service")).forEach(routeDefinition -> {
             String name = routeDefinition.getId();
             config.addGroup(name);

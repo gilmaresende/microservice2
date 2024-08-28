@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @Tag(name = "Book endpoint")
 @RestController
-@RequestMapping("book-service-v2")
+@RequestMapping("book-service")
 public class BookControllerV2 {
 
     @Autowired

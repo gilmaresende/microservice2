@@ -18,7 +18,7 @@ import java.lang.annotation.Retention;
 
 @Tag(name = "Foo Bar")
 @RestController
-@RequestMapping("book-service-v2")
+@RequestMapping("book-service")
 public class FooBarController {
 
     private Logger looger = LoggerFactory.getLogger(FooBarController.class);

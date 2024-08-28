@@ -14,10 +14,10 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.Optional;
 
-@RestController
-@RequestMapping("book-service")
+//@RestController
+//@RequestMapping("book-service")
 public class BookController {
-
+/*
     @Autowired
     private Environment environment;
 
@@ -51,4 +51,5 @@ public class BookController {
 
         return book;
     }
+    */
 }
